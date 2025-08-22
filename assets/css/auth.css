@@ -1,0 +1,196 @@
+/* --- ESTILOS PARA PÁGINAS DE AUTENTICAÇÃO (CADASTRO / LOGIN) --- */
+
+body {
+    background-color: #f8f9fa; /* Um cinza bem claro para o fundo */
+}
+
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.auth-box {
+    background-color: var(--color-bg);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 450px;
+}
+
+.auth-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.auth-header .logo {
+    font-size: 2.5rem;
+}
+
+.auth-content h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.auth-subtitle {
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--color-text-light);
+}
+
+.auth-subtitle a {
+    color: var(--color-primary);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.auth-subtitle a:hover {
+    text-decoration: underline;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+}
+
+.form-group input[type="email"],
+.form-group input[type="password"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-family: var(--font-primary);
+    transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.form-group input[type="email"]:focus,
+.form-group input[type="password"]:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(52, 76, 183, 0.2);
+}
+
+.form-group.terms {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.form-group.terms input[type="checkbox"] {
+    margin-top: 4px;
+    flex-shrink: 0;
+}
+
+.form-group.terms label {
+    font-weight: 400;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: var(--color-text-light);
+    margin-bottom: 0;
+}
+.form-group.terms a {
+    color: var(--color-text);
+    font-weight: 600;
+}
+
+.btn-full-width {
+    width: 100%;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    font-size: 1.1rem;
+}
+
+/* --- ESTILOS PARA VALIDAÇÃO --- */
+.error-message {
+    color: #e53e3e; /* Vermelho para erros */
+    font-size: 0.85rem;
+    margin-top: 5px;
+    display: none; /* Escondido por padrão */
+}
+
+.form-group input.input-error {
+    border-color: #e53e3e;
+    background-color: #fff5f5;
+}
+
+.form-group input.input-error:focus {
+     box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.2);
+}
+
+.btn:disabled {
+    background-color: #a0aec0; /* Cor cinza para botão desabilitado */
+    cursor: not-allowed;
+}
+
+.btn-primary:disabled:hover {
+    background-color: #a0aec0; /* Mantém a cor cinza no hover */
+    transform: none;
+}
+
+.password-strength-checker {
+    margin-top: 15px;
+}
+
+.password-strength-checker ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.password-strength-checker li {
+    font-size: 0.85rem;
+    color: var(--color-text-light);
+    transition: color var(--transition-speed);
+}
+
+.password-strength-checker li::before {
+    content: '○';
+    display: inline-block;
+    margin-right: 8px;
+    font-weight: bold;
+    color: #e53e3e;
+}
+
+.password-strength-checker li.valid {
+    color: #38a169;
+}
+
+.password-strength-checker li.valid::before {
+    content: '✓';
+    color: #38a169;
+}
+
+/* --- NOVO ESTILO PARA O LINK "ESQUECEU A SENHA?" --- */
+.form-group.forgot-password {
+    text-align: right;
+    margin-top: -10px;
+    margin-bottom: 25px;
+}
+
+.form-group.forgot-password a {
+    color: var(--color-text-light);
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color var(--transition-speed);
+}
+
+.form-group.forgot-password a:hover {
+    color: var(--color-primary);
+    text-decoration: underline;
+}

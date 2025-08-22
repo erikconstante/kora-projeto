@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alterar Senha | KORA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/auth.css">
+</head>
+
+<body>
+
+    <div class="success-notification" id="success-notification">
+        <div class="success-icon">&#10004;</div>
+        <p class="success-message">Senha alterada com sucesso!</p>
+    </div>
+
+    <div class="auth-container">
+        <div class="auth-box">
+            <header class="auth-header">
+                <a href="../" class="logo">KORA</a>
+            </header>
+
+            <main class="auth-content">
+                <h1>Alterar senha</h1>
+                <p class="auth-subtitle">Crie uma nova senha segura para sua conta.</p>
+
+                <form action="#" method="POST" id="alterar-senha-form">
+                    <div class="form-group">
+                        <label for="new-password">Nova senha</label>
+                        <input type="password" id="new-password" name="new-password" required>
+                        <div id="password-strength-checker" class="password-strength-checker">
+                            <ul>
+                                <li id="length">Pelo menos 8 caracteres</li>
+                                <li id="uppercase">Uma letra maiúscula</li>
+                                <li id="lowercase">Uma letra minúscula</li>
+                                <li id="number">Um número</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm-password">Repetir nova senha</label>
+                        <input type="password" id="confirm-password" name="confirm-password" required>
+                        <p class="error-message" id="password-error">As senhas não correspondem.</p>
+                    </div>
+                    
+                    <div class="form-group">
+                        <button type="submit" id="submit-btn" class="btn btn-primary btn-full-width">Alterar senha</button>
+                    </div>
+                </form>
+
+                <p class="auth-subtitle" style="margin-top: 30px;"><a href="../login/">Voltar para o login</a></p>
+
+            </main>
+        </div>
+    </div>
+    
+    <script src="../assets/js/script.js"></script>
+</body>
+</html>

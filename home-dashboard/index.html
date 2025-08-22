@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | KORA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/dashboard.css">
+</head>
+<body>
+
+    <div class="dashboard-container">
+
+        <aside class="sidebar">
+    <div class="sidebar-header">
+        <a href="#" class="logo">KORA</a>
+    </div>
+    <ul class="sidebar-menu">
+        <li><a href="#" class="active">Dashboard</a></li>
+        <li><a href="#">Financeiro</a></li>
+        <li><a href="produtos/">Meus Produtos</a></li>
+        <li><a href="#">Suporte</a></li>
+    </ul>
+</aside>
+
+        <div class="main-content">
+            <header class="dashboard-header">
+                <button class="menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <div class="user-profile">
+                    <button class="user-profile-button">
+                        <span class="user-name">Olá, Erik</span>
+                        <img src="https://placehold.co/40x40/E0E7FF/344CB7?text=E" alt="Foto do Usuário" class="user-photo">
+                    </button>
+                    <div class="dropdown-menu">
+                        <a href="perfil/">Meu Perfil</a>
+                        <a href="#" id="logout-btn">Sair</a>
+                    </div>
+                </div>
+            </header>
+
+            <main class="dashboard-main">
+                <div class="dashboard-content-header">
+                    <h1>Dashboard</h1>
+                    <div class="filters">
+                        <select name="period" id="period-filter">
+                            <option value="today">Hoje</option>
+                            <option value="last7">Últimos 7 dias</option>
+                            <option value="last30">Últimos 30 dias</option>
+                        </select>
+                        <select name="product" id="product-filter">
+                            <option value="all">Todos os produtos</option>
+                        </select>
+                        <select name="currency" id="currency-filter">
+                            <option value="brl">Todas as moedas</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="main-column">
+                        <div class="stat-card graph-card">
+                            <div class="graph-header">
+                                <span>R$ 0</span>
+                                <span>R$ 0</span>
+                            </div>
+                            <div class="graph-placeholder"></div>
+                            <div class="graph-footer">
+                                <span>Hoje, 0:00</span>
+                                <span>Hoje, 23:59</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-card-icon"><img src="https://api.iconify.design/ph:cardholder-duotone.svg?color=%2364748b" alt="ícone cartão"></div>
+                            <div class="stat-card-info">
+                                <h4>Aprovação cartão</h4>
+                                <p class="value">0 %</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-card-icon"><img src="https://api.iconify.design/ph:arrows-counter-clockwise-duotone.svg?color=%2364748b" alt="ícone reembolso"></div>
+                            <div class="stat-card-info">
+                                <h4>Reembolso</h4>
+                                <p class="value">0 %</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-card-icon"><img src="https://api.iconify.design/ph:prohibit-duotone.svg?color=%2364748b" alt="ícone chargeback"></div>
+                            <div class="stat-card-info">
+                                <h4>Chargeback</h4>
+                                <p class="value">0 %</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="side-column">
+                        <div class="stat-card">
+                            <div class="stat-card-icon"><img src="https://api.iconify.design/ph:currency-dollar-simple-duotone.svg?color=%2364748b" alt="ícone valor"></div>
+                            <div class="stat-card-info">
+                                <h4>Valor líquido</h4>
+                                <p class="value">R$ 0,00</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-card-icon"><img src="https://api.iconify.design/ph:chart-line-up-duotone.svg?color=%2364748b" alt="ícone vendas"></div>
+                            <div class="stat-card-info">
+                                <h4>Vendas</h4>
+                                <p class="value">0</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-card-icon"><img src="https://api.iconify.design/ph:globe-duotone.svg?color=%2364748b" alt="ícone rede"></div>
+                            <div class="stat-card-info">
+                                <h4>Vendas 1-click da rede KORA</h4>
+                                <p class="value">R$ 0,00 <span class="percentage">0 %</span></p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-card-icon"><img src="https://api.iconify.design/ph:barcode-duotone.svg?color=%2364748b" alt="ícone boleto"></div>
+                            <div class="stat-card-info">
+                                <h4>Conversão boleto</h4>
+                                <p class="value">0 %</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-card-icon"><img src="https://api.iconify.design/ph:hash-duotone.svg?color=%2364748b" alt="ícone boletos gerados"></div>
+                            <div class="stat-card-info">
+                                <h4>Boletos gerados</h4>
+                                <p class="value">0</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+
+    </div>
+    
+    <script src="../assets/js/script.js"></script>
+    <script src="../assets/js/dashboard.js"></script>
+</body>
+</html>

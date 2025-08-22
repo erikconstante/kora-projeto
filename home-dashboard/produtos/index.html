@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus Produtos | KORA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/dashboard.css">
+</head>
+
+<body>
+
+    <div class="dashboard-container">
+
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="../" class="logo">KORA</a>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="../">Dashboard</a></li>
+                <li><a href="#">Financeiro</a></li>
+                <li><a href="#" class="active">Meus Produtos</a></li>
+                <li><a href="#">Suporte</a></li>
+            </ul>
+        </aside>
+
+        <div class="main-content">
+            <header class="dashboard-header">
+                <button class="menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <div class="user-profile">
+                    <button class="user-profile-button">
+                        <span class="user-name">Olá, Erik</span>
+                        <img src="https://placehold.co/40x40/E0E7FF/344CB7?text=E" alt="Foto do Usuário"
+                            class="user-photo">
+                    </button>
+                    <div class="dropdown-menu">
+                        <a href="../perfil/">Meu Perfil</a>
+                        <a href="#" id="logout-btn">Sair</a>
+                    </div>
+                </div>
+            </header>
+
+            <main class="dashboard-main">
+                <div class="dashboard-content-header">
+                    <h1>Meus Produtos</h1>
+                    <button class="btn btn-primary" id="open-create-product-modal-btn">
+                        Criar Produto
+                    </button>
+                </div>
+
+                <div class="products-list">
+                    <div class="products-list-wrapper">
+                        <div class="product-item-header">
+                            <div class="product-name">Produto</div>
+                            <div class="product-price">Preço</div>
+                            <div class="product-status">Status</div>
+                        </div>
+                        <div id="products-container">
+                        </div>
+                    </div>
+                    <p id="no-products-message"
+                        style="display: none; text-align: center; padding: 40px; color: var(--color-text-light);">Você
+                        ainda não cadastrou nenhum produto.</p>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="../../assets/js/dashboard.js"></script>
+
+    <div class="modal-overlay" id="create-product-modal">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h2>Criar Novo Produto</h2>
+                <button class="close-modal-btn" id="close-modal-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="create-product-form">
+                    <div class="form-group">
+                        <label for="product-name">Nome do Produto</label>
+                        <input type="text" id="product-name" name="name" required
+                            placeholder="Ex: Curso de Node.js para Iniciantes">
+                    </div>
+                    <div class="form-group">
+                        <label for="product-description">Descrição (Opcional)</label>
+                        <textarea id="product-description" name="description" rows="4"
+                            placeholder="Fale um pouco sobre o que os alunos aprenderão."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="product-price">Preço (R$)</label>
+                        <input type="number" id="product-price" name="price" required min="1" step="0.01"
+                            placeholder="Ex: 99.90">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" id="cancel-create-btn">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Salvar Produto</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

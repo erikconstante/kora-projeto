@@ -1,0 +1,12 @@
+# Dependências do Node.js - nunca devem ser enviadas
+/node_modules
+
+# Arquivo de variáveis de ambiente - contém informações sensíveis
+.env
+
+# Arquivos de log
+*.log
+
+# Arquivos de sistema operacional
+.DS_Store
+Thumbs.db
