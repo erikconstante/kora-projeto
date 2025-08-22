@@ -504,3 +504,101 @@ body {
     color: var(--color-primary);
     text-decoration: underline;
 }
+
+/* --- ESTILOS PARA A PÁGINA DE EDITAR PRODUTO --- */
+
+.edit-page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.back-link {
+    text-decoration: none;
+    color: var(--color-text-light);
+    font-weight: 600;
+    transition: color var(--transition-speed);
+}
+
+.back-link:hover {
+    color: var(--color-primary);
+}
+
+.edit-page-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+.form-card {
+    background-color: var(--color-bg);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    margin-bottom: 25px;
+}
+
+.form-card h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.edit-page-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.btn-danger {
+    background-color: #e53e3e;
+    color: var(--color-white);
+    border-color: transparent;
+}
+
+.btn-danger:hover {
+    background-color: #c53030;
+}
+
+/* Garanta que estas regras existam no dashboard.css */
+
+.form-group select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-family: var(--font-primary);
+    background-color: white;
+}
+
+.input-with-button {
+    display: flex;
+}
+
+.input-with-button input {
+    flex-grow: 1;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    background-color: #f8f9fa;
+}
+
+.input-with-button button.btn-copy {
+    border: 1px solid #ccc;
+    border-left: none;
+    background-color: #f1f1f1;
+    padding: 0 20px;
+    cursor: pointer;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.placeholder-text {
+    text-align: center;
+    padding: 40px;
+    color: var(--color-text-light);
+}

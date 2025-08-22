@@ -248,3 +248,70 @@ app.get('/', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
 });
+
+// Adicione esta rota no seu server.js
+
+// ROTA PARA BUSCAR UM ÚNICO PRODUTO POR ID (PROTEGIDA)
+app.get('/api/produtos/:id', authenticateToken, async (req, res) => {
+    const { id } = req.params; // Pega o ID da URL
+    const userId = req.user.id;
+
+    try {
+        const sql = "SELECT * FROM products WHERE id = ? AND user_id = ?";
+        const [products] = await pool.query(sql, [id, userId]);
+
+        if (products.length === 0) {
+            return res.status(404).json({ message: 'Produto não encontrado ou você não tem permissão para vê-lo.' });
+        }
+
+        res.status(200).json(products[0]); // Retorna apenas o primeiro (e único) resultado
+    } catch (error) {
+        console.error('Erro ao buscar produto:', error);
+        res.status(500).json({ message: 'Erro interno no servidor.' });
+    }
+});
+
+// ROTA PARA ATUALIZAR UM PRODUTO (PROTEGIDA)
+app.put('/api/produtos/:id', authenticateToken, async (req, res) => {
+    const { id } = req.params;
+    const { name, description, price } = req.body;
+    const userId = req.user.id;
+
+    if (!name || !price) {
+        return res.status(400).json({ message: 'Nome e preço são obrigatórios.' });
+    }
+
+    try {
+        const sql = "UPDATE products SET name = ?, description = ?, price = ? WHERE id = ? AND user_id = ?";
+        const [result] = await pool.query(sql, [name, description, price, id, userId]);
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: 'Produto não encontrado ou você não tem permissão para editá-lo.' });
+        }
+
+        res.status(200).json({ message: 'Produto atualizado com sucesso!' });
+    } catch (error) {
+        console.error('Erro ao atualizar produto:', error);
+        res.status(500).json({ message: 'Erro interno no servidor.' });
+    }
+});
+
+// ROTA PARA EXCLUIR UM PRODUTO (PROTEGIDA)
+app.delete('/api/produtos/:id', authenticateToken, async (req, res) => {
+    const { id } = req.params;
+    const userId = req.user.id;
+
+    try {
+        const sql = "DELETE FROM products WHERE id = ? AND user_id = ?";
+        const [result] = await pool.query(sql, [id, userId]);
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: 'Produto não encontrado ou você não tem permissão para excluí-lo.' });
+        }
+
+        res.status(200).json({ message: 'Produto excluído com sucesso!' });
+    } catch (error) {
+        console.error('Erro ao excluir produto:', error);
+        res.status(500).json({ message: 'Erro interno no servidor.' });
+    }
+});
