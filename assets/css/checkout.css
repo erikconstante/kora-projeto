@@ -1,0 +1,375 @@
+/* --- Variáveis globais (repetidas aqui para garantir) --- */
+:root {
+    --color-primary: #6c5ce7; /* Roxo principal */
+    --color-secondary: #0984e3; /* Azul secundário */
+    --color-accent: #00b894; /* Verde de destaque */
+    --color-text: #2d3436; /* Texto escuro */
+    --color-text-light: #636e72; /* Texto cinza */
+    --color-white: #ffffff; /* Branco */
+    --color-bg: #ffffff; /* Fundo de componentes */
+    --color-bg-alt: #f8f9fa; /* Fundo alternativo */
+    --transition-speed: 0.3s ease;
+    --font-primary: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: var(--color-bg-alt);
+    font-family: var(--font-primary);
+    color: var(--color-text);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* --- Botões e Formulário (estilos base podem vir do style.css) --- */
+.btn {
+    padding: 12px 25px;
+    border-radius: 8px; /* Mais arredondado */
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all var(--transition-speed);
+    font-weight: 600;
+    border: none; /* Remover borda padrão do botão */
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+}
+
+.btn-primary:hover {
+    background-color: #5a4ac7; /* Um pouco mais escuro */
+}
+
+.btn-full-width {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.form-group {
+    margin-bottom: 25px; /* Espaço entre os grupos de formulário */
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--color-text-light);
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #dcdcdc;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: var(--font-primary);
+    background-color: var(--color-bg);
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+    transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.form-group input:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.2);
+    outline: none;
+}
+
+/* --- Layout Principal do Checkout --- */
+.checkout-container {
+    display: flex;
+    min-height: calc(100vh - 80px); /* Ajusta para o footer */
+    width: 100%;
+    max-width: 1200px; /* Limita a largura máxima para centros maiores */
+    margin: 0 auto; /* Centraliza o container */
+    background-color: var(--color-bg);
+    box-shadow: 0 0 30px rgba(0,0,0,0.05); /* Sombra elegante no container principal */
+    border-radius: 15px; /* Cantos arredondados no container principal */
+    overflow: hidden; /* Garante que os cantos arredondados sejam respeitados */
+}
+
+.payment-form-section {
+    flex: 1;
+    padding: 60px 5%; /* Mais padding para os lados */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centraliza o conteúdo verticalmente */
+}
+
+.payment-form-section .logo {
+    text-align: left; /* Logo à esquerda */
+    margin-bottom: 30px;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+.payment-form-section .section-title {
+    font-size: 2rem;
+    margin-bottom: 40px; /* Mais espaço para o título */
+    color: var(--color-text);
+    font-weight: 700;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 25px; /* Espaço para a linha de campos */
+}
+
+.form-row .form-group {
+    flex: 1;
+    margin-bottom: 0; /* Remove a margem inferior para não duplicar */
+}
+
+/* --- Seções de Segurança --- */
+.security-seals {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px dashed #e0e0e0; /* Borda tracejada */
+    color: var(--color-text-light);
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.security-seals span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.security-seals i {
+    color: var(--color-accent); /* Ícones verdes */
+}
+
+
+/* --- Coluna de Resumo (Summary Section) --- */
+.summary-section {
+    flex: 0 0 40%;
+    background-color: var(--color-bg-alt);
+    padding: 60px 4%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px; /* Espaço entre os boxes do resumo */
+}
+
+.summary-box, .guarantee-box, .testimonial-box {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.03); /* Sombra mais sutil nos boxes */
+}
+
+.summary-title {
+    font-size: 1.5rem;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e0e0e0;
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+.product-item-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.product-details p {
+    margin: 0;
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.product-price-summary {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--color-text-light);
+}
+
+.total-info {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 700;
+    font-size: 1.4rem; /* Total maior e mais destacado */
+    margin-top: 25px;
+    padding-top: 25px;
+    border-top: 1px solid #e0e0e0;
+    color: var(--color-primary); /* Total com cor principal */
+}
+
+/* --- Seção de Garantia --- */
+.guarantee-box {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background-color: #e6ffed; /* Fundo verde claro */
+    border-color: #a7f3d0;
+}
+
+.guarantee-box .guarantee-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: var(--color-accent);
+    padding: 5px;
+}
+
+.guarantee-box p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #065f46; /* Texto verde escuro */
+}
+
+/* --- Seção de Depoimento --- */
+.testimonial-box {
+    background-color: #f0f8ff; /* Fundo azul claro */
+    border-color: #bfdbfe;
+}
+
+.testimonial-text {
+    font-style: italic;
+    font-size: 1.05rem;
+    margin-bottom: 20px;
+    color: #1e3a8a; /* Texto azul escuro */
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    color: var(--color-text-light);
+    font-size: 0.9rem;
+}
+
+.testimonial-author .author-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* --- Rodapé do Checkout --- */
+.checkout-footer {
+    background-color: var(--color-text);
+    color: #ccc;
+    text-align: center;
+    padding: 20px;
+    font-size: 0.9rem;
+}
+
+.checkout-footer p {
+    margin: 5px 0;
+}
+
+/* --- Responsividade --- */
+@media (max-width: 992px) {
+    .checkout-container {
+        flex-direction: column-reverse;
+        max-width: 100%;
+        margin: 0;
+        border-radius: 0;
+        box-shadow: none;
+    }
+    .summary-section {
+        flex: none; /* Remove flex grow */
+        width: 100%;
+        padding: 40px 5%;
+        border-radius: 0;
+        background-color: var(--color-bg-alt);
+    }
+    .payment-form-section {
+        padding: 40px 5%;
+    }
+    .payment-form-section .logo {
+        text-align: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    .form-row .form-group {
+        margin-bottom: 25px;
+    }
+    .security-seals {
+        flex-direction: column;
+        gap: 15px;
+        font-size: 0.85rem;
+    }
+    .summary-box, .guarantee-box, .testimonial-box {
+        padding: 25px;
+    }
+}
+
+/* --- ADICIONE ESTE BLOCO NO FINAL DO ARQUIVO --- */
+
+/* --- Estilos para Seleção de Método de Pagamento --- */
+.payment-methods {
+    display: flex;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #e0e0e0;
+}
+
+.payment-method-btn {
+    flex: 1;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text-light);
+    transition: all var(--transition-speed);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.payment-method-btn:not(:last-child) {
+    border-right: 1px solid #e0e0e0;
+}
+
+.payment-method-btn:hover {
+    background-color: #e9ecef;
+}
+
+.payment-method-btn.active {
+    background-color: var(--color-white);
+    color: var(--color-primary);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05) inset;
+}
+
+.payment-content {
+    display: none; /* Esconde todos os painéis por padrão */
+}
+
+.payment-content.active {
+    display: block; /* Mostra apenas o painel ativo */
+}
+
+.payment-instructions {
+    text-align: center;
+    padding: 30px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    color: var(--color-text-light);
+    line-height: 1.7;
+}
+
+.payment-instructions p {
+    margin: 10px 0;
+}

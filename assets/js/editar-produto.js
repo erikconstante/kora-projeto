@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const productDescInput = document.getElementById('product-description');
     const productPriceInput = document.getElementById('product-price');
     const deleteButton = document.getElementById('delete-btn');
+    const checkoutLinkInput = document.getElementById('checkout-link');
 
     // Pega o ID do produto da URL
     const urlParams = new URLSearchParams(window.location.search);
@@ -33,6 +34,10 @@ document.addEventListener('DOMContentLoaded', function () {
             productNameInput.value = product.name;
             productDescInput.value = product.description;
             productPriceInput.value = product.price;
+
+            // --- NOVO: Gera e exibe o link de checkout ---
+            const checkoutUrl = `${window.location.origin}/checkout/?productId=${productId}`;
+            checkoutLinkInput.value = checkoutUrl;
 
         } catch (error) {
             console.error('Erro:', error);
@@ -108,4 +113,29 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
     });
+
+    // --- NOVO: Lógica para o botão de copiar ---
+    const copyButton = document.querySelector('.btn-copy');
+    if (copyButton) {
+        copyButton.addEventListener('click', function () {
+            checkoutLinkInput.select(); // Seleciona o texto no campo
+            checkoutLinkInput.setSelectionRange(0, 99999); // Para compatibilidade com mobile
+
+            try {
+                navigator.clipboard.writeText(checkoutLinkInput.value);
+
+                // Feedback visual para o usuário
+                const originalText = this.textContent;
+                this.textContent = 'Copiado!';
+                setTimeout(() => {
+                    this.textContent = originalText;
+                }, 2000); // Volta ao texto original após 2 segundos
+
+            } catch (err) {
+                console.error('Falha ao copiar o link: ', err);
+                alert('Não foi possível copiar o link. Por favor, copie manualmente.');
+            }
+        });
+    }
+
 });

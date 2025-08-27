@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagamento Seguro | KORA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/checkout.css"> 
+</head>
+<body>
+    <div class="checkout-container">
+        <div class="payment-form-section">
+            <h1 class="logo">KORA</h1>
+            <h2 class="section-title">Finalize seu Pagamento</h2>
+            <form id="payment-form">
+                <div class="form-group">
+                    <label for="full-name">Nome completo</label>
+                    <input type="text" id="full-name" required placeholder="Seu nome completo">
+                </div>
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" required placeholder="Para onde enviaremos o acesso">
+                </div>
+
+                <div class="payment-methods">
+                    <button type="button" class="payment-method-btn active" data-target="credito-content">
+                        <i class="fas fa-credit-card"></i> Cartão de Crédito
+                    </button>
+                    <button type="button" class="payment-method-btn" data-target="debito-content">
+                        <i class="fas fa-wallet"></i> Cartão de Débito
+                    </button>
+                    <button type="button" class="payment-method-btn" data-target="pix-content">
+                        <i class="fas fa-qrcode"></i> Pix
+                    </button>
+                    <button type="button" class="payment-method-btn" data-target="boleto-content">
+                        <i class="fas fa-barcode"></i> Boleto
+                    </button>
+                </div>
+
+                <div id="credito-content" class="payment-content active">
+                    <div class="form-group">
+                        <label for="card-number">Número do Cartão</label>
+                        <input type="text" id="card-number" required placeholder="0000 0000 0000 0000">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="expiry-date">Validade</label>
+                            <input type="text" id="expiry-date" required placeholder="MM/AA">
+                        </div>
+                        <div class="form-group">
+                            <label for="cvc">CVC</label>
+                            <input type="text" id="cvc" required placeholder="123">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="installments">Parcelas</label>
+                        <select id="installments" name="installments">
+                            <option value="1">1x de R$ --,--</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="debito-content" class="payment-content">
+                    <div class="form-group">
+                        <label for="debit-card-number">Número do Cartão</label>
+                        <input type="text" id="debit-card-number" placeholder="0000 0000 0000 0000">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="debit-expiry-date">Validade</label>
+                            <input type="text" id="debit-expiry-date" placeholder="MM/AA">
+                        </div>
+                        <div class="form-group">
+                            <label for="debit-cvc">CVC</label>
+                            <input type="text" id="debit-cvc" placeholder="123">
+                        </div>
+                    </div>
+                </div>
+
+                <div id="pix-content" class="payment-content">
+                    <div class="payment-instructions">
+                        <p>Ao finalizar a compra, um QR Code será gerado para o pagamento com Pix.</p>
+                        <p>Aponte a câmera do seu celular ou utilize a opção "Pix Copia e Cola".</p>
+                    </div>
+                </div>
+
+                <div id="boleto-content" class="payment-content">
+                    <div class="payment-instructions">
+                        <p>O boleto bancário será exibido após a confirmação da compra e também será enviado para o seu e-mail.</p>
+                        <p>O pagamento pode levar até 3 dias úteis para ser confirmado.</p>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-full-width">Finalizar Pagamento</button>
+            </form>
+            <div class="security-seals">
+                <span><i class="fas fa-lock"></i> Pagamento Seguro SSL</span>
+                <span><i class="fas fa-shield-alt"></i> Seus dados protegidos</span>
+            </div>
+        </div>
+        <div class="summary-section">
+            <div class="summary-box">
+                <h3 class="summary-title">Resumo do Pedido</h3>
+                <div class="product-item-summary">
+                    <div class="product-details">
+                        <p id="product-name">Carregando produto...</p>
+                    </div>
+                    <p class="product-price-summary" id="product-price">R$ --,--</p>
+                </div>
+                <div class="total-info">
+                    <span>Total</span>
+                    <span id="total-price">R$ --,--</span>
+                </div>
+            </div>
+            <div class="guarantee-box">
+                <p><strong>Garantia de 7 dias ou seu dinheiro de volta!</strong><br>
+                Se por algum motivo você não gostar do produto, devolveremos 100% do seu investimento.</p>
+            </div>
+            <div class="testimonial-box">
+                <p class="testimonial-text">"Nunca pensei que seria tão fácil e rápido comprar online. O produto superou minhas expectativas!"</p>
+                <div class="testimonial-author">
+                    <span>Erik Constante, Curitiba</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="checkout-footer">
+        <p>Desenvolvido com <span style="color: red;">♥</span> pela KORA</p>
+        <p>&copy; 2025 KORA. Todos os direitos reservados.</p>
+    </footer>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="../assets/js/checkout.js"></script>
+</body>
+</html>

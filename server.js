@@ -42,6 +42,28 @@ const transporter = nodemailer.createTransport({
 });
 
 
+// ROTA PÚBLICA PARA BUSCAR DADOS DE UM PRODUTO PARA O CHECKOUT
+app.get('/api/public/produto/:id', async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const sql = "SELECT name, description, price FROM products WHERE id = ?";
+        const [products] = await pool.query(sql, [id]);
+
+        if (products.length === 0) {
+            return res.status(404).json({ message: 'Produto não encontrado.' });
+        }
+        
+        // Retornamos apenas os dados necessários e seguros para o público
+        res.status(200).json(products[0]);
+
+    } catch (error) {
+        console.error('Erro ao buscar produto para checkout:', error);
+        res.status(500).json({ message: 'Erro interno no servidor.' });
+    }
+});
+
+
 // --- ROTAS PÚBLICAS (NÃO PRECISAM DE LOGIN) ---
 
 // API DE CADASTRO DE USUÁRIO
