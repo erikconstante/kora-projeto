@@ -472,14 +472,15 @@ body {
     margin-top: 30px;
 }
 
-.modal-box .form-group {
-    margin-bottom: 20px;
+.form-group {
+    margin-bottom: 28px;
 }
 
-.modal-box .form-group label {
+.form-group label {
     display: block;
+    margin-bottom: 1px; /* Valor diminuído */
     font-weight: 600;
-    margin-bottom: 8px;
+    color: var(--color-text-light);
 }
 
 .modal-box .form-group input,
@@ -505,63 +506,125 @@ body {
     text-decoration: underline;
 }
 
-/* --- ESTILOS PARA A PÁGINA DE EDITAR PRODUTO --- */
+/* --- SUBSTITUA O BLOCO ANTIGO POR ESTE --- */
 
+/* --- ESTILOS PARA A PÁGINA DE EDITAR PRODUTO --- */
 .edit-page-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
+    padding-bottom: 15px; /* Espaçamento extra abaixo do header */
+    border-bottom: 1px solid #e0e0e0; /* Linha divisória */
 }
-
 .back-link {
+    display: flex; /* Para alinhar a seta com o texto */
+    align-items: center;
     text-decoration: none;
     color: var(--color-text-light);
     font-weight: 600;
     transition: color var(--transition-speed);
+    gap: 8px; /* Espaço entre a seta e o texto */
 }
-
 .back-link:hover {
     color: var(--color-primary);
 }
-
 .edit-page-title {
-    font-size: 2rem;
+    font-size: 2.2rem; /* Título maior */
     font-weight: 700;
-    margin-bottom: 30px;
+    margin-top: 20px; /* Espaço do header */
+    margin-bottom: 30px; /* Espaço para o primeiro card */
+    color: var(--color-text);
 }
-
 .form-card {
     background-color: var(--color-bg);
     padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    margin-bottom: 25px;
+    border-radius: 12px; /* Cantos mais arredondados */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08); /* Sombra mais pronunciada */
+    margin-bottom: 30px; /* Mais espaço entre os cards */
+    border: 1px solid #f0f0f0; /* Borda suave */
 }
-
 .form-card h2 {
-    font-size: 1.2rem;
-    font-weight: 600;
+    font-size: 1.4rem; /* Título do card maior */
+    font-weight: 700;
     padding-bottom: 15px;
     margin-bottom: 25px;
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: 1px solid #e0e0e0; /* Borda mais clara */
+    color: var(--color-primary); /* Título do card com cor principal */
 }
-
 .edit-page-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 40px;
+    gap: 15px; /* ADICIONADO: Garante um espaço mínimo entre os botões */
+    margin-top: 50px;
+    padding-top: 25px;
+    border-top: 1px solid #e0e0e0;
 }
-
 .btn-danger {
     background-color: #e53e3e;
     color: var(--color-white);
     border-color: transparent;
 }
-
 .btn-danger:hover {
     background-color: #c53030;
+}
+
+
+/* Tamanhos de campos específicos */
+.form-group.short-input input,
+.form-group.short-input select {
+    max-width: 260px; /* Campos BEM mais finos */
+}
+
+.form-group.medium-input input,
+.form-group.medium-input select {
+    max-width: 350px; /* Campos de largura média */
+}
+
+/* Estilos para campos de select */
+.form-group select {
+    /* Mantém o padrão de input para consistência */
+    width: 100%;
+}
+
+/* Estilos para input com botão (link de checkout) */
+.input-with-button {
+    display: flex;
+    align-items: stretch; /* Garante que input e botão tenham a mesma altura */
+}
+
+.input-with-button input {
+    flex-grow: 1;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    background-color: #f8f9fa; /* Fundo levemente cinza */
+    color: var(--color-text-light); /* Texto mais claro para campos readonly */
+}
+
+.input-with-button button.btn-copy {
+    border: 1px solid #dcdcdc;
+    border-left: none; /* Remove a borda esquerda para se juntar ao input */
+    background-color: #e9ecef; /* Um cinza claro para o botão */
+    color: var(--color-text);
+    padding: 0 20px;
+    cursor: pointer;
+    border-top-right-radius: 8px; /* Cantos arredondados */
+    border-bottom-right-radius: 8px;
+    font-weight: 600;
+}
+
+.input-with-button button.btn-copy:hover {
+    background-color: #dfe3e7; /* Levemente mais escuro ao passar o mouse */
+}
+
+.placeholder-text {
+    text-align: center;
+    padding: 40px;
+    color: var(--color-text-light);
+    font-style: italic;
+    font-size: 1.1rem;
+    line-height: 1.6;
 }
 
 /* Garanta que estas regras existam no dashboard.css */
@@ -601,4 +664,12 @@ body {
     text-align: center;
     padding: 40px;
     color: var(--color-text-light);
+}
+
+/* --- SUBSTITUA A REGRA ANTIGA POR ESTA --- */
+
+/* Classe para campos com altura reduzida (mais finos) */
+.form-group.compact-field input,
+.form-group.compact-field select {
+    padding: 6px 15px; /* Usando o atalho para garantir a sobreposição */
 }
