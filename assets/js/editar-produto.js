@@ -1,3 +1,8 @@
+// assets/js/editar-produto.js
+
+// Importa o módulo de API centralizado para fazer as requisições
+import { api } from './api.js'; 
+
 document.addEventListener('DOMContentLoaded', function () {
     const editForm = document.getElementById('edit-product-form');
     const productNameInput = document.getElementById('product-name');
@@ -5,12 +10,13 @@ document.addEventListener('DOMContentLoaded', function () {
     const productPriceInput = document.getElementById('product-price');
     const deleteButton = document.getElementById('delete-btn');
     const checkoutLinkInput = document.getElementById('checkout-link');
+    const copyButton = document.querySelector('.btn-copy');
 
-    // Pega o ID do produto da URL
+    // Pega o ID do produto da URL para saber qual produto carregar/editar
     const urlParams = new URLSearchParams(window.location.search);
     const productId = urlParams.get('id');
-    const token = localStorage.getItem('kora_token');
 
+    // Se não houver ID na URL, redireciona de volta para a lista de produtos
     if (!productId) {
         alert('ID do produto não encontrado!');
         window.location.href = '../produtos/';
@@ -20,35 +26,28 @@ document.addEventListener('DOMContentLoaded', function () {
     // Função para carregar os dados do produto e preencher o formulário
     async function loadProductData() {
         try {
-            const response = await fetch(`http://localhost:3000/api/produtos/${productId}`, {
-                headers: { 'Authorization': `Bearer ${token}` }
-            });
+            // Usa o módulo 'api' para buscar os dados do produto. Mais limpo e centralizado.
+            const product = await api.get(`/produtos/${productId}`);
 
-            if (!response.ok) {
-                throw new Error('Não foi possível carregar os dados do produto.');
-            }
-
-            const product = await response.json();
-
-            // Preenche os campos do formulário
+            // Preenche os campos do formulário com os dados recebidos
             productNameInput.value = product.name;
             productDescInput.value = product.description;
             productPriceInput.value = product.price;
 
-            // --- NOVO: Gera e exibe o link de checkout ---
+            // Gera e exibe o link de checkout
             const checkoutUrl = `${window.location.origin}/checkout/?productId=${productId}`;
             checkoutLinkInput.value = checkoutUrl;
 
         } catch (error) {
-            console.error('Erro:', error);
-            alert(error.message);
-            window.location.href = '../produtos/';
+            console.error('Erro ao carregar dados do produto:', error);
+            alert(`Não foi possível carregar os dados do produto: ${error.message}`);
+            window.location.href = '../produtos/'; // Volta para a lista se der erro
         }
     }
 
-    // Event listener para salvar as alterações
+    // Event listener para o envio do formulário (salvar as alterações)
     editForm.addEventListener('submit', async function (event) {
-        event.preventDefault();
+        event.preventDefault(); // Impede o recarregamento padrão da página
 
         const updatedProduct = {
             name: productNameInput.value.trim(),
@@ -56,69 +55,46 @@ document.addEventListener('DOMContentLoaded', function () {
             price: productPriceInput.value
         };
 
+        // Simples validação no frontend
         if (!updatedProduct.name || !updatedProduct.price) {
             alert('Nome e preço são obrigatórios.');
             return;
         }
 
         try {
-            const response = await fetch(`http://localhost:3000/api/produtos/${productId}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                },
-                body: JSON.stringify(updatedProduct)
-            });
-
-            const result = await response.json();
-
-            if (!response.ok) {
-                throw new Error(result.message || 'Falha ao salvar as alterações.');
-            }
+            // Usa o módulo 'api' para enviar os dados atualizados via método PUT
+            await api.put(`/produtos/${productId}`, updatedProduct);
 
             alert('Produto atualizado com sucesso!');
-            window.location.href = '../produtos/'; // Volta para a lista de produtos
+            window.location.href = '../produtos/'; // Redireciona para a lista de produtos
 
         } catch (error) {
-            console.error('Erro ao salvar:', error);
-            alert(`Erro: ${error.message}`);
+            console.error('Erro ao salvar produto:', error);
+            alert(`Erro ao salvar: ${error.message}`);
         }
     });
-
-    // Carrega os dados do produto assim que a página é carregada
-    loadProductData();
 
     // Event listener para o botão de excluir
     deleteButton.addEventListener('click', async function () {
         if (confirm('Tem certeza de que deseja excluir este produto? Esta ação não pode ser desfeita.')) {
             try {
-                const response = await fetch(`http://localhost:3000/api/produtos/${productId}`, {
-                    method: 'DELETE',
-                    headers: { 'Authorization': `Bearer ${token}` }
-                });
-
-                const result = await response.json();
-
-                if (!response.ok) {
-                    throw new Error(result.message || 'Falha ao excluir o produto.');
-                }
+                // Usa o módulo 'api' para enviar a requisição de exclusão via método DELETE
+                await api.del(`/produtos/${productId}`);
 
                 alert('Produto excluído com sucesso!');
-                window.location.href = '../produtos/'; // Volta para a lista de produtos
+                window.location.href = '../produtos/'; // Redireciona para a lista
 
             } catch (error) {
-                console.error('Erro ao excluir:', error);
-                alert(`Erro: ${error.message}`);
+                console.error('Erro ao excluir produto:', error);
+                alert(`Erro ao excluir: ${error.message}`);
             }
         }
     });
 
-    // --- NOVO: Lógica para o botão de copiar ---
-    const copyButton = document.querySelector('.btn-copy');
+    // Lógica para o botão de copiar o link de checkout
     if (copyButton) {
         copyButton.addEventListener('click', function () {
-            checkoutLinkInput.select(); // Seleciona o texto no campo
+            checkoutLinkInput.select();
             checkoutLinkInput.setSelectionRange(0, 99999); // Para compatibilidade com mobile
 
             try {
@@ -138,4 +114,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // Carrega os dados do produto assim que a página é carregada
+    loadProductData();
 });

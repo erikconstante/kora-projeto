@@ -1,0 +1,129 @@
+/* assets/css/base.css */
+
+/* --- VARIÁVEIS GLOBAIS E CORES DO DESIGN SYSTEM --- */
+:root {
+    --color-primary: #344CB7; /* Azul principal mais sóbrio */
+    --color-primary-light: #e0e7ff;
+    --color-dark-section-bg: #333446; /* Cinza-azulado escuro */
+    --color-accent: #00b894; /* Verde para sucesso e destaque */
+    
+    --color-bg: #FFFFFF; /* Fundo principal */
+    --color-bg-alt: #f8f9fa; /* Fundo alternativo (cinza claro) */
+
+    --color-text: #333; /* Texto principal escuro */
+    --color-text-light: #555; /* Texto secundário (cinza) */
+    --color-text-inverted: #FFFFFF; /* Texto sobre fundos escuros */
+
+    --color-danger: #e53e3e; /* Vermelho para perigo/exclusão */
+    --color-border: #dcdcdc; /* Cor padrão para bordas */
+
+    --font-primary: 'Poppins', sans-serif;
+    --transition-speed: 0.3s ease;
+}
+
+/* --- RESET BÁSICO E ESTILOS GLOBAIS --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-primary);
+    color: var(--color-text);
+    background-color: var(--color-bg-alt);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- COMPONENTES REUTILIZÁVEIS --- */
+
+/* Botões */
+.btn {
+    display: inline-block;
+    padding: 10px 22px;
+    border-radius: 8px; /* Padronizando o border-radius */
+    text-decoration: none;
+    font-weight: 600;
+    transition: all var(--transition-speed);
+    border: 2px solid transparent;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: var(--color-text-inverted);
+}
+
+.btn-primary:hover {
+    background-color: #2a3d9a;
+    transform: translateY(-2px);
+}
+
+.btn-danger {
+    background-color: var(--color-danger);
+    color: var(--color-text-inverted);
+}
+
+.btn-danger:hover {
+    background-color: #c53030;
+}
+
+.btn:disabled {
+    background-color: #a0aec0;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Formulários */
+.form-card {
+    background-color: var(--color-bg);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    margin-bottom: 30px;
+    border: 1px solid #f0f0f0;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--color-text-light);
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: var(--font-primary);
+    background-color: var(--color-bg);
+    transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px var(--color-primary-light);
+}

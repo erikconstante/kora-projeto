@@ -1,40 +1,9 @@
-/* --- GERAL E VARIÁVEIS CSS --- */
-:root {
-    --color-primary: #344CB7;
-    --color-dark-section-bg: #333446;
-    --color-bg: #FFFFFF;
-    --color-text: #333;
-    --color-text-light: #555;
-    --color-white: #FFFFFF;
-    --font-primary: 'Poppins', sans-serif;
-    --transition-speed: 0.3s;
-}
+/* assets/css/style.css */
+/* Estilos específicos da Landing Page */
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    font-family: var(--font-primary);
-    color: var(--color-text);
-    background-color: var(--color-bg);
-    overflow-x: hidden;
-}
-
+/* --- GERAL DA LANDING PAGE --- */
 .scroll-lock {
     overflow: hidden;
-}
-
-.container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 20px;
 }
 
 section {
@@ -102,26 +71,6 @@ section {
     margin-left: auto;
 }
 
-.btn {
-    padding: 10px 22px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: all var(--transition-speed) ease;
-    border: 2px solid transparent;
-    font-size: 1rem;
-}
-
-.btn-primary {
-    background-color: var(--color-primary);
-    color: var(--color-white);
-}
-
-.btn-primary:hover {
-    background-color: #2a3d9a;
-    transform: translateY(-2px);
-}
-
 .btn-secondary {
     border-color: var(--color-primary);
     color: var(--color-primary);
@@ -139,9 +88,8 @@ section {
 
 .header-actions .btn-primary:hover {
     background-color: #2a3d9a;
-    transform: none;
+    transform: none; /* Mantém o botão estável no header */
 }
-
 
 .hamburger-menu {
     display: none;
@@ -244,7 +192,7 @@ section {
 
 .rate-box {
     background-color: var(--color-bg);
-    border: 2px solid #e0e7ff;
+    border: 2px solid var(--color-primary-light);
     border-radius: 10px;
     padding: 30px;
     margin-bottom: 30px;
@@ -400,7 +348,6 @@ section {
 .cta-final-btn {
     background-color: var(--color-white);
     color: var(--color-dark-section-bg);
-    padding: 10px 22px;
     font-size: 1rem;
 }
 
@@ -494,7 +441,6 @@ section {
     }
 }
 
-
 @media (max-width: 768px) {
     section {
         padding-top: 60px;
@@ -536,7 +482,7 @@ section {
 /* --- MENU MOBILE ESTILOS --- */
 .mobile-menu {
     position: fixed;
-    top: 71px;
+    top: 71px; /* Altura do header */
     left: 0;
     width: 100%;
     height: calc(100vh - 71px);
@@ -569,10 +515,10 @@ section {
 /* --- ESTILOS PARA NOTIFICAÇÃO DE SUCESSO --- */
 .success-notification {
     position: fixed;
-    top: -100px; /* Inicia mais para cima para uma animação mais longa */
+    top: -100px; /* Inicia fora da tela para animar a entrada */
     left: 50%;
     transform: translateX(-50%);
-    background-color: #28a745; /* Verde sucesso mais vibrante */
+    background-color: var(--color-accent); /* Usa a cor de destaque das variáveis */
     color: white;
     padding: 16px 30px;
     border-radius: 50px; /* Totalmente arredondado */
