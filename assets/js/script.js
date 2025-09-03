@@ -276,7 +276,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
                 const data = await response.json();
                 if (response.ok) {
-                    showSuccessNotification();
+                    showSuccessNotification('Senha alterada com sucesso!');
+                    alterarSenhaForm.reset();
                     setTimeout(() => {
                         window.location.href = '../login/';
                     }, 3500);
@@ -291,12 +292,21 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // --- LÓGICA PARA NOTIFICAÇÃO DE SUCESSO ---
-    const successNotification = document.getElementById('success-notification');
-    function showSuccessNotification() {
-        if (successNotification) {
-            successNotification.classList.add('show');
+    function showSuccessNotification(message) {
+        const notification = document.getElementById('success-notification');
+        if (notification) {
+            const messageElement = notification.querySelector('.success-message');
+            if (messageElement) {
+                messageElement.textContent = message;
+            }
+            notification.style.display = 'flex'; // Garante que o elemento seja visível
+            notification.classList.add('show');
             setTimeout(() => {
-                successNotification.classList.remove('show');
+                notification.classList.remove('show');
+                // Opcional: esconder novamente após a animação de saída
+                setTimeout(() => {
+                    notification.style.display = 'none';
+                }, 500);
             }, 3000);
         }
     }
@@ -316,12 +326,19 @@ document.addEventListener('DOMContentLoaded', function () {
             button.disabled = true;
             button.textContent = 'Enviando...';
             try {
-                await fetch('http://localhost:3000/api/redefinir-senha', {
+                const response = await fetch('http://localhost:3000/api/redefinir-senha', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ email: email }),
                 });
-                showSuccessNotification();
+
+                if (response.ok) {
+                    showSuccessNotification('E-mail de redefinição enviado com sucesso!');
+                    redefinirSenhaForm.reset();
+                } else {
+                    const data = await response.json();
+                    alert(`Erro: ${data.message || 'Ocorreu um erro.'}`);
+                }
             } catch (error) {
                 console.error('Erro ao conectar com o servidor:', error);
                 alert('Não foi possível conectar ao servidor. Tente novamente mais tarde.');

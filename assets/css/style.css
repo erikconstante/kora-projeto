@@ -71,7 +71,7 @@ section {
 
 .btn-secondary:hover {
     background-color: var(--color-primary);
-    color: var(--color-white);
+    color: var(--color-text-inverted);
 }
 
 .btn-large {
@@ -82,6 +82,7 @@ section {
 .header-actions .btn-primary:hover {
     background-color: #2a3d9a;
     transform: none; /* Mantém o botão estável no header */
+    color: var(--color-text-inverted);
 }
 
 .hamburger-menu {
@@ -323,7 +324,7 @@ section {
 
 #cta-final .container {
     background-color: var(--color-dark-section-bg);
-    color: var(--color-white);
+    color: var(--color-text-inverted);
     text-align: center;
     padding: 60px 40px;
     border-radius: 20px;
@@ -339,7 +340,7 @@ section {
 }
 
 .cta-final-btn {
-    background-color: var(--color-white);
+    background-color: var(--color-text-inverted);
     color: var(--color-dark-section-bg);
     font-size: 1rem;
 }
@@ -502,36 +503,5 @@ section {
 }
 
 .mobile-menu .btn-primary {
-    color: var(--color-white);
-}
-
-/* --- ESTILOS PARA NOTIFICAÇÃO DE SUCESSO --- */
-.success-notification {
-    position: fixed;
-    top: -100px; /* Inicia fora da tela para animar a entrada */
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: var(--color-accent); /* Usa a cor de destaque das variáveis */
-    color: white;
-    padding: 16px 30px;
-    border-radius: 50px; /* Totalmente arredondado */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    z-index: 2000;
-    opacity: 0;
-    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Transição com efeito "elástico" */
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    font-size: 1rem;
-    font-weight: 600;
-}
-
-.success-notification.show {
-    top: 20px;
-    opacity: 1;
-}
-
-.success-icon {
-    font-size: 1.2rem;
-    line-height: 1;
+    color: var(--color-text-inverted);
 }

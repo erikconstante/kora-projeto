@@ -69,6 +69,7 @@ body {
 .btn-primary:hover {
     background-color: #2a3d9a;
     transform: translateY(-2px);
+    color: var(--color-text-inverted);
 }
 
 .btn-danger {
@@ -78,6 +79,7 @@ body {
 
 .btn-danger:hover {
     background-color: #c53030;
+    color: var(--color-text-inverted);
 }
 
 .btn:disabled {
@@ -133,4 +135,37 @@ body {
     font-weight: 700;
     color: var(--color-primary);
     text-decoration: none;
+}
+
+/* --- ESTILOS PARA NOTIFICAÇÃO DE SUCESSO --- */
+.success-notification {
+    position: fixed;
+    top: -100px; /* Inicia fora da tela para animar a entrada */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--color-accent); /* Usa a cor de destaque das variáveis */
+    color: var(--color-text-inverted);
+    padding: 16px 30px;
+    border-radius: 50px; /* Totalmente arredondado */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    z-index: 2000;
+    opacity: 0;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Transição com efeito "elástico" */
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 1rem;
+    font-weight: 600;
+    visibility: hidden; /* Escondido por padrão */
+}
+
+.success-notification.show {
+    top: 20px;
+    opacity: 1;
+    visibility: visible; /* Visível quando a classe .show é adicionada */
+}
+
+.success-icon {
+    font-size: 1.2rem;
+    line-height: 1;
 }

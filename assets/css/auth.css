@@ -86,17 +86,20 @@ body {
     display: flex;
     align-items: flex-start;
     gap: 10px;
+    margin-bottom: 25px;
 }
 
 .form-group.terms input[type="checkbox"] {
-    margin-top: 4px;
+    margin-top: 5px;
     flex-shrink: 0;
+    width: 16px;
+    height: 16px;
 }
 
 .form-group.terms label {
     font-weight: 400;
-    font-size: 0.85rem;
-    line-height: 1.5;
+    font-size: 0.9rem;
+    line-height: 1.6;
     color: var(--color-text-light);
     margin-bottom: 0;
 }

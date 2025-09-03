@@ -14,7 +14,7 @@ body {
 .sidebar {
     width: 250px;
     background-color: var(--color-dark-section-bg);
-    color: var(--color-white);
+    color: var(--color-text-inverted);
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -41,7 +41,7 @@ body {
 
 .sidebar-menu li a {
     display: block;
-    color: #a0aec0;
+    color: var(--color-text-inverted);
     text-decoration: none;
     padding: 15px;
     border-radius: 5px;
@@ -52,12 +52,12 @@ body {
 
 .sidebar-menu li a:hover {
     background-color: rgba(255, 255, 255, 0.1);
-    color: var(--color-white);
+    color: var(--color-text-inverted);
 }
 
 .sidebar-menu li a.active {
     background-color: var(--color-primary);
-    color: var(--color-white);
+    color: var(--color-text-inverted);
 }
 
 /* --- CONTEÚDO PRINCIPAL --- */
@@ -563,7 +563,7 @@ body {
 }
 .btn-danger {
     background-color: #e53e3e;
-    color: var(--color-white);
+    color: var(--color-text-inverted);
     border-color: transparent;
 }
 .btn-danger:hover {
