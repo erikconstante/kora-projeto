@@ -140,9 +140,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 e.preventDefault();
                 const submitButton = this.querySelector('button[type="submit"]');
                 const productData = {
-                    name: document.getElementById('product-name-modal').value.trim(),
-                    description: document.getElementById('product-description-modal').value.trim(),
-                    price: document.getElementById('product-price-modal').value
+                    name: document.getElementById('product-name').value.trim(),
+                    description: document.getElementById('product-description').value.trim(),
+                    price: document.getElementById('product-price').value
                 };
 
                 if (!productData.name || !productData.price) {
