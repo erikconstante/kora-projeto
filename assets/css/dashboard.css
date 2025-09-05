@@ -1,7 +1,7 @@
 /* --- ESTILOS ESPECÍFICOS DO DASHBOARD --- */
 
 body {
-    overflow: hidden; 
+    overflow: hidden;
     background-color: #f8f9fa;
 }
 
@@ -65,7 +65,7 @@ body {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    overflow: hidden; 
+    overflow: hidden;
 }
 
 .dashboard-header {
@@ -130,7 +130,7 @@ body {
     left: 0;
     background-color: var(--color-bg);
     border-radius: 8px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
     width: 180px;
     z-index: 1500;
     overflow: hidden;
@@ -201,7 +201,8 @@ body {
     gap: 20px;
 }
 
-.main-column, .side-column {
+.main-column,
+.side-column {
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -221,6 +222,7 @@ body {
 .stat-card-icon {
     flex-shrink: 0;
 }
+
 .stat-card-icon img {
     width: 24px;
     height: 24px;
@@ -239,6 +241,7 @@ body {
     color: var(--color-text);
     margin: 0;
 }
+
 .stat-card-info .value .percentage {
     font-size: 0.9rem;
     font-weight: 600;
@@ -251,12 +254,15 @@ body {
     align-items: stretch;
     padding: 25px;
 }
-.graph-header, .graph-footer {
+
+.graph-header,
+.graph-footer {
     display: flex;
     justify-content: space-between;
     font-size: 0.85rem;
     color: var(--color-text-light);
 }
+
 .graph-placeholder {
     height: 120px;
     border-bottom: 2px solid var(--color-primary);
@@ -274,7 +280,8 @@ body {
     overflow-x: auto;
 }
 
-.product-item, .product-item-header {
+.product-item,
+.product-item-header {
     display: grid;
     grid-template-columns: 3fr 1fr 1fr;
     gap: 20px;
@@ -296,7 +303,8 @@ body {
     border-bottom: none;
 }
 
-.product-price, .product-status {
+.product-price,
+.product-status {
     color: var(--color-text-light);
 }
 
@@ -310,10 +318,20 @@ body {
     text-align: center;
 }
 
-.status-badge.rascunho { background-color: #6c757d; }
-.status-badge.ativo { background-color: #28a745; }
-.status-badge.em-análise { background-color: #ffc107; color: #333; }
-.status-badge.recusado { background-color: #dc3545; }
+.status-badge.rascunho {
+    background-color: #6c757d;
+}
+
+.status-badge.ativo {
+    background-color: #28a745;
+}
+
+/* Novo estado: Inativo */
+.status-badge.inativo {
+    background-color: #dc3545; /* vermelho consistente */
+}
+
+/* Removidos estilos antigos (em-análise, recusado) não utilizados */
 
 .product-actions {
     position: relative;
@@ -336,7 +354,7 @@ body {
     right: 0;
     background-color: var(--color-bg);
     border-radius: 8px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
     width: 180px;
     z-index: 10;
     overflow: hidden;
@@ -379,7 +397,7 @@ body {
 
     .sidebar.active {
         transform: translateX(0);
-        box-shadow: 5px 0 25px rgba(0,0,0,0.2);
+        box-shadow: 5px 0 25px rgba(0, 0, 0, 0.2);
     }
 
     .menu-toggle {
@@ -396,9 +414,11 @@ body {
         flex-direction: column;
         align-items: flex-start;
     }
+
     .filters {
         width: 100%;
     }
+
     .filters select {
         width: 100%;
     }
@@ -478,7 +498,8 @@ body {
 
 .form-group label {
     display: block;
-    margin-bottom: 1px; /* Valor diminuído */
+    margin-bottom: 1px;
+    /* Valor diminuído */
     font-weight: 600;
     color: var(--color-text-light);
 }
@@ -513,59 +534,84 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
-    padding-bottom: 15px; /* Espaçamento extra abaixo do header */
-    border-bottom: 1px solid #e0e0e0; /* Linha divisória */
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding-bottom: 15px;
+    /* Espaçamento extra abaixo do header */
+    border-bottom: 1px solid #e0e0e0;
+    /* Linha divisória */
 }
+
 .back-link {
-    display: flex; /* Para alinhar a seta com o texto */
+    display: flex;
+    /* Para alinhar a seta com o texto */
     align-items: center;
     text-decoration: none;
     color: var(--color-text-light);
     font-weight: 600;
     transition: color var(--transition-speed);
-    gap: 8px; /* Espaço entre a seta e o texto */
+    gap: 8px;
+    /* Espaço entre a seta e o texto */
 }
+
 .back-link:hover {
     color: var(--color-primary);
 }
+
 .edit-page-title {
-    font-size: 2.2rem; /* Título maior */
+    font-size: 2.2rem;
+    /* Título maior */
     font-weight: 700;
-    margin-top: 20px; /* Espaço do header */
-    margin-bottom: 30px; /* Espaço para o primeiro card */
+    margin-top: 20px;
+    /* Espaço do header */
+    margin-bottom: 30px;
+    /* Espaço para o primeiro card */
     color: var(--color-text);
 }
+
 .form-card {
     background-color: var(--color-bg);
     padding: 30px;
-    border-radius: 12px; /* Cantos mais arredondados */
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08); /* Sombra mais pronunciada */
-    margin-bottom: 30px; /* Mais espaço entre os cards */
-    border: 1px solid #f0f0f0; /* Borda suave */
+    border-radius: 12px;
+    /* Cantos mais arredondados */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    /* Sombra mais pronunciada */
+    margin-bottom: 30px;
+    /* Mais espaço entre os cards */
+    border: 1px solid #f0f0f0;
+    /* Borda suave */
 }
+
 .form-card h2 {
-    font-size: 1.4rem; /* Título do card maior */
+    font-size: 1.4rem;
+    /* Título do card maior */
     font-weight: 700;
     padding-bottom: 15px;
     margin-bottom: 25px;
-    border-bottom: 1px solid #e0e0e0; /* Borda mais clara */
-    color: var(--color-primary); /* Título do card com cor principal */
+    border-bottom: 1px solid #e0e0e0;
+    /* Borda mais clara */
+    color: var(--color-primary);
+    /* Título do card com cor principal */
 }
+
 .edit-page-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 15px; /* ADICIONADO: Garante um espaço mínimo entre os botões */
+    gap: 15px;
+    /* ADICIONADO: Garante um espaço mínimo entre os botões */
     margin-top: 50px;
     padding-top: 25px;
     border-top: 1px solid #e0e0e0;
 }
+
 .btn-danger {
     background-color: #e53e3e;
     color: var(--color-text-inverted);
     border-color: transparent;
 }
+
 .btn-danger:hover {
     background-color: #c53030;
 }
@@ -574,12 +620,14 @@ body {
 /* Tamanhos de campos específicos */
 .form-group.short-input input,
 .form-group.short-input select {
-    max-width: 260px; /* Campos BEM mais finos */
+    max-width: 260px;
+    /* Campos BEM mais finos */
 }
 
 .form-group.medium-input input,
 .form-group.medium-input select {
-    max-width: 350px; /* Campos de largura média */
+    max-width: 350px;
+    /* Campos de largura média */
 }
 
 /* Estilos para campos de select */
@@ -591,32 +639,61 @@ body {
 /* Estilos para input com botão (link de checkout) */
 .input-with-button {
     display: flex;
-    align-items: stretch; /* Garante que input e botão tenham a mesma altura */
+    align-items: stretch;
+    /* Garante que input e botão tenham a mesma altura */
 }
 
 .input-with-button input {
     flex-grow: 1;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
-    background-color: #f8f9fa; /* Fundo levemente cinza */
-    color: var(--color-text-light); /* Texto mais claro para campos readonly */
+    background-color: #f8f9fa;
+    /* Fundo levemente cinza */
+    color: var(--color-text-light);
+    /* Texto mais claro para campos readonly */
 }
 
-.input-with-button button.btn-copy {
+.input-with-button button {
     border: 1px solid #dcdcdc;
-    border-left: none; /* Remove a borda esquerda para se juntar ao input */
-    background-color: #e9ecef; /* Um cinza claro para o botão */
+    border-left: none; /* junta com o anterior */
+    background-color: #e9ecef;
     color: var(--color-text);
-    padding: 0 20px;
+    padding: 0 16px;
     cursor: pointer;
-    border-top-right-radius: 8px; /* Cantos arredondados */
-    border-bottom-right-radius: 8px;
     font-weight: 600;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap;
+    transition: background-color .18s, color .18s;
 }
 
-.input-with-button button.btn-copy:hover {
-    background-color: #dfe3e7; /* Levemente mais escuro ao passar o mouse */
+/* Primeiro botão após o input não tem raio direito se houver outro botão depois */
+.input-with-button button:not(:last-of-type) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
 }
+
+/* Último botão tem cantos arredondados à direita */
+.input-with-button button:last-of-type {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.input-with-button button:hover {
+    background-color: #dfe3e7;
+}
+
+/* Estado desabilitado para botões de link de checkout */
+.input-with-button button:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    filter: grayscale(10%);
+    background-color: #e2e5e8;
+}
+
+/* Ajustes específicos podem ser adicionados para .btn-copy ou .btn-open-checkout se necessário futuramente */
 
 .placeholder-text {
     text-align: center;
@@ -627,37 +704,47 @@ body {
     line-height: 1.6;
 }
 
-/* Garanta que estas regras existam no dashboard.css */
+/* (Removido bloco duplicado de .form-group select e .input-with-button) */
 
-.form-group select {
-    width: 100%;
-    padding: 12px 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1rem;
-    font-family: var(--font-primary);
-    background-color: white;
-}
-
-.input-with-button {
-    display: flex;
-}
-
-.input-with-button input {
-    flex-grow: 1;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-    background-color: #f8f9fa;
-}
-
-.input-with-button button.btn-copy {
-    border: 1px solid #ccc;
-    border-left: none;
-    background-color: #f1f1f1;
-    padding: 0 20px;
-    cursor: pointer;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
+/* === RESPONSIVIDADE LINK DE CHECKOUT === */
+@media (max-width: 520px) {
+    .input-with-button {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .input-with-button input {
+        border-top-right-radius: 8px; /* volta cantos */
+        border-bottom-right-radius: 8px;
+        border-right: 1px solid #dcdcdc; /* restaura borda perdida */
+        margin-bottom: 6px;
+    }
+    .input-with-button button {
+        border: 2px solid #cfd2d6; /* mais grosso para destaque */
+        background: linear-gradient(180deg,#f7f8fa 0%, #eef1f4 100%);
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        border-radius: 10px !important;
+        width: 100%;
+        justify-content: center;
+        padding: 0.9rem 1.1rem;
+        font-size: 0.95rem;
+        font-weight: 600;
+        letter-spacing: .3px;
+        line-height: 1.15;
+        transition: background .25s, box-shadow .25s, transform .25s;
+    }
+    .input-with-button button + button { margin-top: 6px; }
+    .input-with-button button:hover {
+        background: linear-gradient(180deg,#eef1f4 0%, #e3e7eb 100%);
+        box-shadow: 0 3px 8px rgba(0,0,0,0.07);
+    }
+    .input-with-button button:active {
+        transform: translateY(1px);
+        box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+    }
+    .input-with-button button:focus-visible {
+        outline: 0;
+        box-shadow: 0 0 0 3px rgba(64,106,220,0.35), 0 2px 6px rgba(0,0,0,0.08);
+    }
 }
 
 .placeholder-text {
@@ -671,5 +758,139 @@ body {
 /* Classe para campos com altura reduzida (mais finos) */
 .form-group.compact-field input,
 .form-group.compact-field select {
-    padding: 6px 15px; /* Usando o atalho para garantir a sobreposição */
+    padding: 6px 15px;
+    /* Usando o atalho para garantir a sobreposição */
+}
+
+/* Estilos para a seleção de status do produto */
+/* === CONTROLE SEGMENTADO DE STATUS (Refinado) === */
+.status-options {
+    display: inline-flex;
+    position: relative;
+    border: 1px solid var(--color-border);
+    background: linear-gradient(180deg, #ffffff 0%, #f5f7fa 100%);
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 4px; /* aumenta padding para equilíbrio vertical */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.04);
+    backdrop-filter: blur(2px);
+}
+
+.status-btn {
+    position: relative;
+    flex: 1 1 auto;
+}
+
+.status-btn:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 22%;
+    right: 0;
+    height: 56%;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.15), transparent);
+    pointer-events: none;
+}
+
+.status-btn input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.status-btn span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .45rem;
+    padding: 0.7rem 1.35rem; /* padding uniforme vertical */
+    min-width: 118px;
+    font-size: 0.85rem;
+    line-height: 1.15; /* ligeiro aumento melhora equilíbrio visual */
+    font-weight: 500;
+    letter-spacing: .25px;
+    color: var(--color-text-light);
+    background: transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    position: relative;
+    box-sizing: border-box;
+    transition: background .28s ease, color .25s ease, box-shadow .25s ease, transform .25s ease;
+    user-select: none;
+}
+
+/* Indicador decorativo opcional (pode ser usado no futuro para ícones) */
+.status-btn span::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-text-light);
+    opacity: .35;
+    transition: background .3s, opacity .3s;
+}
+
+.status-btn span:hover {
+    background: rgba(0,0,0,0.04);
+    color: var(--color-text);
+}
+
+.status-btn input[type="radio"]:focus-visible + span {
+    outline: 0;
+    box-shadow: 0 0 0 3px rgba(52,76,183,0.35);
+}
+
+.status-btn input[type="radio"]:checked + span {
+    background: linear-gradient(135deg, var(--color-primary) 0%, #2d55d6 100%);
+    color: var(--color-text-inverted);
+    font-weight: 600;
+    box-shadow: 0 3px 10px -2px rgba(52,76,183,.35), 0 1px 2px rgba(0,0,0,0.08) inset;
+    transform: translateY(-1px);
+}
+
+.status-btn input[type="radio"]:checked + span::before {
+    background: var(--color-text-inverted);
+    opacity: .9;
+}
+
+/* Transição suave ao alternar */
+.status-btn input[type="radio"]:not(:checked) + span:active {
+    transform: translateY(0);
+}
+
+/* Responsividade melhorada para o controle de status */
+@media (max-width: 520px) {
+    .status-options {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 6px;
+        gap: 6px;
+        border-radius: 12px;
+    }
+    .status-btn { flex: 1 1 auto; }
+    .status-btn:not(:last-child)::after { display: none; }
+    .status-btn span {
+        width: 100%;
+        min-width: unset;
+        padding: 0.8rem 1rem;
+        font-size: 0.82rem;
+        border-radius: 8px;
+    }
+}
+
+@media (min-width: 521px) and (max-width: 760px) {
+    .status-options {
+        flex-wrap: wrap;
+        padding: 6px;
+        gap: 6px;
+    }
+    .status-btn { flex: 1 0 32%; }
+    .status-btn:not(:last-child)::after { display: none; }
+    .status-btn span {
+        min-width: unset;
+        width: 100%;
+        padding: 0.7rem 1rem;
+        font-size: 0.8rem;
+    }
 }

@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
         try {
             const response = await fetch(`http://localhost:3000/api/public/produto/${productId}`);
             if (!response.ok) {
-                throw new Error('Produto não encontrado.');
+                throw new Error('Produto indisponível.');
             }
             const product = await response.json();
 
@@ -55,9 +55,40 @@ document.addEventListener('DOMContentLoaded', function () {
             productPriceEl.textContent = formattedPrice;
             totalPriceEl.textContent = formattedPrice;
 
+            // Caso backend no futuro exponha status aqui, já tratamos (defensivo)
+            if (product.status && product.status !== 'Ativo') {
+                applyInactiveState(product.status);
+            }
+
         } catch (error) {
             console.error('Erro:', error);
             productNameEl.textContent = error.message;
+            applyInactiveState();
+        }
+    }
+
+    function applyInactiveState(statusLabel) {
+        const submitBtn = paymentForm.querySelector('button[type="submit"]');
+        submitBtn.disabled = true;
+        submitBtn.classList.add('disabled');
+        submitBtn.textContent = 'Indisponível';
+        const noticeId = 'inactive-product-notice';
+        if (!document.getElementById(noticeId)) {
+            const msg = document.createElement('div');
+            msg.id = noticeId;
+            msg.style.marginTop = '18px';
+            msg.style.padding = '14px 16px';
+            msg.style.border = '1px solid #f1c5c5';
+            msg.style.borderRadius = '8px';
+            msg.style.background = '#ffecec';
+            msg.style.color = '#8a1f1f';
+            msg.style.fontSize = '.85rem';
+            msg.style.fontWeight = '600';
+            msg.style.lineHeight = '1.4';
+            msg.textContent = statusLabel === 'Inativo' || statusLabel === 'Rascunho'
+                ? 'Este produto não está ativo. Pagamentos temporariamente bloqueados.'
+                : 'Produto indisponível para pagamento.';
+            paymentForm.appendChild(msg);
         }
     }
 
@@ -65,6 +96,9 @@ document.addEventListener('DOMContentLoaded', function () {
     paymentForm.addEventListener('submit', function (event) {
         event.preventDefault();
         const submitButton = this.querySelector('button[type="submit"]');
+        if (submitButton.disabled) {
+            return; // bloqueado
+        }
         submitButton.disabled = true;
         submitButton.textContent = 'Processando...';
 
@@ -72,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function () {
         setTimeout(() => {
             alert('Pagamento aprovado! (Simulação)');
             submitButton.disabled = false;
-            submitButton.textContent = 'Pagar Agora';
+            submitButton.textContent = 'Finalizar Pagamento';
         }, 2000);
     });
 

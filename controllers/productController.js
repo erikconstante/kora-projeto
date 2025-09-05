@@ -17,6 +17,9 @@ const productSchema = Joi.object({
         'number.base': `"preço" deve ser um número`,
         'number.positive': `"preço" deve ser um número positivo`,
         'any.required': `"preço" é um campo obrigatório`
+    }),
+    status: Joi.string().valid('Ativo','Inativo','Rascunho').default('Rascunho').messages({
+        'any.only': '"status" inválido'
     })
 });
 

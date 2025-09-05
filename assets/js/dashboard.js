@@ -142,7 +142,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 const productData = {
                     name: document.getElementById('product-name').value.trim(),
                     description: document.getElementById('product-description').value.trim(),
-                    price: document.getElementById('product-price').value
+                    price: document.getElementById('product-price').value,
+                    status: 'Rascunho'
                 };
 
                 if (!productData.name || !productData.price) {

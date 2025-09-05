@@ -62,6 +62,26 @@
                     </div>
 
                     <div class="form-card">
+                        <h2>Status do Produto</h2>
+                        <div class="form-group">
+                            <div class="status-options" id="product-status-options">
+                                <label class="status-btn">
+                                    <input type="radio" name="status" value="Ativo">
+                                    <span>Ativo</span>
+                                </label>
+                                <label class="status-btn">
+                                    <input type="radio" name="status" value="Inativo">
+                                    <span>Inativo</span>
+                                </label>
+                                <label class="status-btn">
+                                    <input type="radio" name="status" value="Rascunho">
+                                    <span>Rascunho</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-card">
                         <h2>Configurações de Venda</h2>
                         <div class="form-group">
                             <label for="external-link">Link da Área de Membros Externa (Opcional)</label>
@@ -105,7 +125,8 @@
                             <label>Página de Pagamento (Checkout)</label>
                             <div class="input-with-button medium-input">
                                 <input type="text" id="checkout-link" readonly value="Link será gerado ao salvar">
-                                <button type="button" class="btn-copy">Copiar</button>
+                                <button type="button" class="btn-copy" title="Copiar link de checkout">Copiar</button>
+                                <button type="button" class="btn-open-checkout" title="Abrir página de checkout">Abrir Página</button>
                             </div>
                         </div>
                     </div>
