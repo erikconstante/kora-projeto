@@ -821,13 +821,7 @@ body {
 
 /* Indicador decorativo opcional (pode ser usado no futuro para ícones) */
 .status-btn span::before {
-    content: '';
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--color-text-light);
-    opacity: .35;
-    transition: background .3s, opacity .3s;
+    display: none;
 }
 
 .status-btn span:hover {
