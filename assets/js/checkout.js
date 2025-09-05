@@ -26,6 +26,38 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+    /**
+     * Preenche o select de parcelas no cartão de crédito conforme o limite salvo.
+     * @param {number} price - Preço total do produto.
+     * @param {number} maxInstallments - Número máximo de parcelas permitidas.
+     */
+    function populateInstallments(price, maxInstallments) {
+        const select = document.getElementById('installments');
+        if (!select) return;
+        select.innerHTML = '';
+        const baseValue = Number(price);
+        // Juros padrão: 2% ao mês em parcelamento acima de 1x
+        const rate = 0.02;
+        for (let i = 1; i <= maxInstallments; i++) {
+            let totalWithInterest = baseValue;
+            if (i > 1) {
+                // Aplicar juros compostos: price * (1+rate)^i
+                totalWithInterest = baseValue * Math.pow(1 + rate, i);
+            }
+            const installmentAmount = totalWithInterest / i;
+            const formattedInstallment = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(installmentAmount);
+            const formattedTotal = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(totalWithInterest);
+            const option = document.createElement('option');
+            option.value = i;
+            if (i === 1) {
+                option.textContent = `1x de ${formattedInstallment}`;
+            } else {
+                option.textContent = `${i}x de ${formattedInstallment} (total ${formattedTotal})`;
+            }
+            select.appendChild(option);
+        }
+    }
+
     // Pega o ID do produto da URL (ex: ?productId=1)
     const urlParams = new URLSearchParams(window.location.search);
     const productId = urlParams.get('productId');
@@ -54,6 +86,8 @@ document.addEventListener('DOMContentLoaded', function () {
             productNameEl.textContent = product.name;
             productPriceEl.textContent = formattedPrice;
             totalPriceEl.textContent = formattedPrice;
+            // Popula opções de parcelas para cartão de crédito
+            populateInstallments(product.price, product.installments_limit);
 
             // Caso backend no futuro exponha status aqui, já tratamos (defensivo)
             if (product.status && product.status !== 'Ativo') {

@@ -4,11 +4,11 @@ import * as authService from '../services/authService.js';
 
 export const handleRegister = async (req, res) => {
     try {
-        const { email, password } = req.body;
-        if (!email || !password) {
-            return res.status(400).json({ message: 'E-mail e senha são obrigatórios.' });
+        const { name, email, password } = req.body;
+        if (!name || !email || !password) {
+            return res.status(400).json({ message: 'Nome, e-mail e senha são obrigatórios.' });
         }
-        await authService.registerUser(email, password);
+        await authService.registerUser(name, email, password);
         res.status(201).json({ message: 'Cadastro recebido! Verifique seu e-mail para ativar sua conta.' });
     } catch (error) {
         res.status(409).json({ message: error.message });
@@ -34,8 +34,8 @@ export const handleLogin = async (req, res) => {
         if (!email || !password) {
             return res.status(400).json({ message: 'E-mail e senha são obrigatórios.' });
         }
-        const token = await authService.loginUser(email, password);
-        res.status(200).json({ message: 'Login bem-sucedido!', token });
+    const { token, user } = await authService.loginUser(email, password);
+    res.status(200).json({ message: 'Login bem-sucedido!', token, user });
     } catch (error) {
         res.status(401).json({ message: error.message });
     }
@@ -64,5 +64,17 @@ export const handleResetPassword = async (req, res) => {
         res.status(200).json({ message: 'Senha alterada com sucesso!' });
     } catch (error) {
         res.status(400).json({ message: error.message });
+    }
+};
+
+/**
+ * Handle fetching user profile for authenticated user.
+ */
+export const handleGetProfile = async (req, res) => {
+    try {
+        const user = await authService.getUserById(req.user.id);
+        res.status(200).json({ user });
+    } catch (error) {
+        res.status(500).json({ message: 'Erro ao buscar perfil.' });
     }
 };

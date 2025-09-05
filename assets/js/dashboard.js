@@ -30,6 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const userProfileButton = document.querySelector('.user-profile-button');
     const dropdownMenu = document.querySelector('.dropdown-menu');
     const logoutBtn = document.getElementById('logout-btn');
+    const dashboardUserName = document.getElementById('dashboard-user-name');
 
     // --- 2. FUNÇÕES AUXILIARES ---
 
@@ -143,7 +144,12 @@ document.addEventListener('DOMContentLoaded', function () {
                     name: document.getElementById('product-name').value.trim(),
                     description: document.getElementById('product-description').value.trim(),
                     price: document.getElementById('product-price').value,
-                    status: 'Rascunho'
+                    status: 'Rascunho',
+                    category: '',
+                    installments_limit: 12,
+                    boleto_validity: 3,
+                    external_link: '',
+                    pixel_id: ''
                 };
 
                 if (!productData.name || !productData.price) {
@@ -179,6 +185,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // --- 4. INICIALIZAÇÃO ---
     
+    // Exibe nome do usuário no dashboard
+    if (dashboardUserName) {
+        api.get('/perfil').then(({ user }) => {
+            dashboardUserName.textContent = user.name;
+        }).catch(err => console.error('Erro ao carregar perfil:', err));
+    }
     // Garante que o container de produtos exista antes de tentar buscar os dados
     if (productsContainer) {
         fetchAndRenderProducts();

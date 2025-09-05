@@ -9,7 +9,7 @@ import { sendVerificationEmail, sendPasswordResetEmail } from '../utils/emailSen
 const saltRounds = 10;
 const JWT_SECRET = process.env.JWT_SECRET;
 
-export const registerUser = async (email, password) => {
+export const registerUser = async (name, email, password) => {
     const existingUser = await pool.query("SELECT * FROM users WHERE email = ?", [email]);
     if (existingUser[0].length > 0) {
         throw new Error('Este e-mail já está cadastrado.');
@@ -20,8 +20,8 @@ export const registerUser = async (email, password) => {
     const expires = new Date(Date.now() + 3600000); // 1 hora
 
     await pool.query("DELETE FROM pending_users WHERE email = ?", [email]);
-    const sqlInsertPending = "INSERT INTO pending_users (email, password, verification_token, token_expires) VALUES (?, ?, ?, ?)";
-    await pool.query(sqlInsertPending, [email, hashedPassword, token, expires]);
+    const sqlInsertPending = "INSERT INTO pending_users (name, email, password, verification_token, token_expires) VALUES (?, ?, ?, ?, ?)";
+    await pool.query(sqlInsertPending, [name, email, hashedPassword, token, expires]);
 
     await sendVerificationEmail(email, token);
 };
@@ -33,7 +33,7 @@ export const verifyEmail = async (token) => {
     }
 
     const pendingUser = pendingUsers[0];
-    await pool.query("INSERT INTO users (email, password) VALUES (?, ?)", [pendingUser.email, pendingUser.password]);
+    await pool.query("INSERT INTO users (name, email, password) VALUES (?, ?, ?)", [pendingUser.name, pendingUser.email, pendingUser.password]);
     await pool.query("DELETE FROM pending_users WHERE email = ?", [pendingUser.email]);
 };
 
@@ -49,8 +49,8 @@ export const loginUser = async (email, password) => {
         throw new Error('Senha incorreta.');
     }
 
-    const authToken = jwt.sign({ id: user.id, email: user.email }, JWT_SECRET, { expiresIn: '1h' });
-    return authToken;
+    const authToken = jwt.sign({ id: user.id, email: user.email, name: user.name }, JWT_SECRET, { expiresIn: '1h' });
+    return { token: authToken, user: { id: user.id, name: user.name, email: user.email } };
 };
 
 export const requestPasswordReset = async (email) => {
@@ -61,6 +61,7 @@ export const requestPasswordReset = async (email) => {
         await pool.query("UPDATE users SET reset_token = ?, reset_token_expires = ? WHERE email = ?", [token, expires, email]);
         await sendPasswordResetEmail(email, token);
     }
+
 };
 
 export const resetPassword = async (token, password) => {
@@ -72,4 +73,13 @@ export const resetPassword = async (token, password) => {
     const user = users[0];
     const hashedPassword = await bcrypt.hash(password, saltRounds);
     await pool.query("UPDATE users SET password = ?, reset_token = NULL, reset_token_expires = NULL WHERE id = ?", [hashedPassword, user.id]);
+};
+/**
+ * Retrieves a user by ID.
+ * @param {number} id - User ID
+ * @returns {Promise<object>} User object
+ */
+export const getUserById = async (id) => {
+    const [rows] = await pool.query("SELECT id, name, email FROM users WHERE id = ?", [id]);
+    return rows[0];
 };

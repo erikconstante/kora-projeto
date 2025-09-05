@@ -18,6 +18,13 @@ const productSchema = Joi.object({
         'number.positive': `"preço" deve ser um número positivo`,
         'any.required': `"preço" é um campo obrigatório`
     }),
+    category: Joi.string().allow('').max(100).optional(),
+    installments_limit: Joi.number().integer().min(1).max(12).default(12),
+    boleto_validity: Joi.number().integer().min(1).max(30).default(3),
+    external_link: Joi.string().uri().allow('').optional(),
+    pixel_id: Joi.string().pattern(/^\d{15}$/).allow('').messages({
+        'string.pattern.base': '"pixel_id" deve ser um ID numérico de 15 dígitos do Facebook Pixel'
+    }),
     status: Joi.string().valid('Ativo','Inativo','Rascunho').default('Rascunho').messages({
         'any.only': '"status" inválido'
     })

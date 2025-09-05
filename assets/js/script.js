@@ -131,19 +131,20 @@ document.addEventListener('DOMContentLoaded', function () {
         emailConfirmInput.addEventListener('input', validateEmails);
         passwordInput.addEventListener('input', validatePassword);
 
-        cadastroForm.addEventListener('submit', async function (e) {
+    cadastroForm.addEventListener('submit', async function (e) {
             e.preventDefault();
             if (submitBtn.disabled) {
                 alert("Por favor, corrija os erros no formulário antes de continuar.");
                 return;
             }
+            const name = document.getElementById('name').value.trim();
             const email = emailInput.value.trim();
             const password = passwordInput.value;
             try {
                 const response = await fetch('http://localhost:3000/api/cadastro', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email, password }),
+                    body: JSON.stringify({ name, email, password }),
                 });
                 const data = await response.json();
 

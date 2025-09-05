@@ -2,9 +2,10 @@
 import pool from '../config/database.js';
 
 export const createProduct = async (productData, userId) => {
-    const { name, description, price, status } = productData;
-    const sql = "INSERT INTO products (user_id, name, description, price, status) VALUES (?, ?, ?, ?, ?)";
-    const [result] = await pool.query(sql, [userId, name, description, price, status || 'Rascunho']);
+    const { name, description, price, status, category, installments_limit, boleto_validity, external_link, pixel_id } = productData;
+    const sql = `INSERT INTO products (user_id, name, description, price, status, category, installments_limit, boleto_validity, external_link, pixel_id)
+                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+    const [result] = await pool.query(sql, [userId, name, description, price, status || 'Rascunho', category || '', installments_limit, boleto_validity, external_link || '', pixel_id || '' ]);
     return { id: result.insertId };
 };
 
@@ -21,9 +22,10 @@ export const findProductById = async (productId, userId) => {
 };
 
 export const updateProductById = async (productId, productData, userId) => {
-    const { name, description, price, status } = productData;
-    const sql = "UPDATE products SET name = ?, description = ?, price = ?, status = ? WHERE id = ? AND user_id = ?";
-    const [result] = await pool.query(sql, [name, description, price, status, productId, userId]);
+    const { name, description, price, status, category, installments_limit, boleto_validity, external_link, pixel_id } = productData;
+    const sql = `UPDATE products SET name = ?, description = ?, price = ?, status = ?, category = ?, installments_limit = ?, boleto_validity = ?, external_link = ?, pixel_id = ?
+                 WHERE id = ? AND user_id = ?`;
+    const [result] = await pool.query(sql, [name, description, price, status, category || '', installments_limit, boleto_validity, external_link || '', pixel_id || '', productId, userId]);
     return result.affectedRows;
 };
 
@@ -35,7 +37,7 @@ export const deleteProductById = async (productId, userId) => {
 
 export const findPublicProductById = async (productId) => {
     // Somente produtos com status 'Ativo' ficam públicos
-    const sql = "SELECT name, description, price FROM products WHERE id = ? AND status = 'Ativo'";
+    const sql = "SELECT name, description, price, installments_limit FROM products WHERE id = ? AND status = 'Ativo'";
     const [products] = await pool.query(sql, [productId]);
     return products[0];
 };
