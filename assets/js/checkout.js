@@ -11,20 +11,34 @@ document.addEventListener('DOMContentLoaded', function () {
     const paymentMethodBtns = document.querySelectorAll('.payment-method-btn');
     const paymentContents = document.querySelectorAll('.payment-content');
 
+    const submitButton = document.querySelector('#payment-form button[type="submit"]');
+
+    function updateSubmitLabel() {
+        // Identifica qual aba está ativa olhando o botão com classe 'active'
+        const activeBtn = document.querySelector('.payment-method-btn.active');
+        if (!activeBtn || !submitButton) return;
+        const target = activeBtn.getAttribute('data-target');
+        if (target === 'pix-content') {
+            submitButton.textContent = 'Gerar Pix';
+        } else if (target === 'boleto-content') {
+            submitButton.textContent = 'Gerar Boleto';
+        } else {
+            submitButton.textContent = 'Finalizar Pagamento';
+        }
+    }
+
     paymentMethodBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            // Remove a classe 'active' de todos os botões e conteúdos
             paymentMethodBtns.forEach(b => b.classList.remove('active'));
             paymentContents.forEach(c => c.classList.remove('active'));
-
-            // Adiciona a classe 'active' ao botão clicado
             btn.classList.add('active');
-
-            // Mostra o conteúdo correspondente
             const targetId = btn.getAttribute('data-target');
             document.getElementById(targetId).classList.add('active');
+            updateSubmitLabel();
         });
     });
+    // Inicializa label correta para o default (cartão de crédito)
+    updateSubmitLabel();
 
     /**
      * Preenche o select de parcelas no cartão de crédito conforme o limite salvo.
@@ -138,9 +152,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Simulação de processamento
         setTimeout(() => {
-            alert('Pagamento aprovado! (Simulação)');
+            // Mensagem diferenciada conforme método
+            const activeBtn = document.querySelector('.payment-method-btn.active');
+            const target = activeBtn ? activeBtn.getAttribute('data-target') : '';
+            if (target === 'pix-content') {
+                alert('Pix gerado! (Simulação)');
+            } else if (target === 'boleto-content') {
+                alert('Boleto gerado! (Simulação)');
+            } else {
+                alert('Pagamento aprovado! (Simulação)');
+            }
             submitButton.disabled = false;
-            submitButton.textContent = 'Finalizar Pagamento';
+            updateSubmitLabel();
         }, 2000);
     });
 
